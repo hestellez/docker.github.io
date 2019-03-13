@@ -532,7 +532,7 @@ the value assigned to a variable that shows up more than once_. The files in the
 list are processed from the top down. For the same variable specified in file
 `a.env` and assigned a different value in file `b.env`, if `b.env` is
 listed below (after), then the value from `b.env` stands. For example, given the
-following declaration in `docker_compose.yml`:
+following declaration in `docker-compose.yml`:
 
 ```yaml
 services:
@@ -990,7 +990,7 @@ as it has the highest priority. It then connects to `app_net_3`, then
       app_net_2:
       app_net_3:
 
-> **Note:** If multiple networks have the same priority, the connection order
+> **Note**: If multiple networks have the same priority, the connection order
 > is undefined.
 
 ### pid
@@ -1006,7 +1006,7 @@ designated container or service.
 If set to "host", the service's PID mode is the host PID mode.  This turns
 on sharing between container and the host operating system the PID address
 space. Containers launched with this flag can access and manipulate
-other containers in the bare-metal machine's namespace and vise-versa.
+other containers in the bare-metal machine's namespace and vice versa.
 
 > **Note**: the `service:` and `container:` forms require
 > [version 2.1](compose-versioning.md#version-21) or above
@@ -1235,7 +1235,7 @@ volumes:
   mydata:
 ```
 
-> **Note:** When creating bind mounts, using the long syntax requires the
+> **Note**: When creating bind mounts, using the long syntax requires the
 > referenced folder to be created beforehand. Using the short syntax
 > creates the folder on the fly if it doesn't exist.
 > See the [bind mounts documentation](/engine/admin/volumes/bind-mounts.md/#differences-between--v-and---mount-behavior)
@@ -1248,7 +1248,7 @@ service.
 
     volume_driver: mydriver
 
-> **Note:** In [version 2 files](compose-versioning.md#version-2), this
+> **Note**: In [version 2 files](compose-versioning.md#version-2), this
 > option only applies to anonymous volumes (those specified in the image,
 > or specified under `volumes` without an explicit named volume or host path).
 > To configure the driver for a named volume, use the `driver` key under the
@@ -1298,7 +1298,7 @@ then read-write is used.
 Each of these is a single value, analogous to its
 [docker run](/engine/reference/run.md) counterpart.
 
-> **Note:** The following options were added in [version 2.2](compose-versioning.md#version-22):
+> **Note**: The following options were added in [version 2.2](compose-versioning.md#version-22):
 > `cpu_count`, `cpu_percent`, `cpus`.
 > The following options were added in [version 2.1](compose-versioning.md#version-21):
 > `oom_kill_disable`, `cpu_period`
@@ -1420,8 +1420,10 @@ If set to `true`, specifies that this volume has been created outside of
 Compose. `docker-compose up` does not attempt to create it, and raises
 an error if it doesn't exist.
 
-`external` cannot be used in conjunction with other volume configuration keys
-(`driver`, `driver_opts`).
+For version 2.0 of the format, `external` cannot be used in
+conjunction with other volume configuration keys (`driver`, `driver_opts`,
+`labels`). This limitation no longer exists for
+[version 2.1](compose-versioning.md#version-21) and above.
 
 In the example below, instead of attempting to create a volume called
 `[projectname]_data`, Compose looks for an existing volume simply
@@ -1483,7 +1485,7 @@ Set a custom name for this volume.
       data:
         name: my-app-data
 
-It can also be used in conjuction with the `external` property:
+It can also be used in conjunction with the `external` property:
 
     version: '2.1'
     volumes:
@@ -1593,8 +1595,10 @@ If set to `true`, specifies that this network has been created outside of
 Compose. `docker-compose up` does not attempt to create it, and raises
 an error if it doesn't exist.
 
-`external` cannot be used in conjunction with other network configuration keys
-(`driver`, `driver_opts`, `group_add`, `ipam`, `internal`).
+For version 2.0 of the format, `external` cannot be used in conjunction with
+other network configuration keys (`driver`, `driver_opts`, `ipam`, `internal`).
+This limitation no longer exists for
+[version 2.1](compose-versioning.md#version-21) and above.
 
 In the example below, `proxy` is the gateway to the outside world. Instead of
 attempting to create a network called `[projectname]_outside`, Compose
@@ -1641,7 +1645,7 @@ Set a custom name for this network.
       network1:
         name: my-app-net
 
-It can also be used in conjuction with the `external` property:
+It can also be used in conjunction with the `external` property:
 
     version: '2.1'
     networks:

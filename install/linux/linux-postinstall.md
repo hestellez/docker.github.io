@@ -73,7 +73,7 @@ To create the `docker` group and add your user:
 
     ```bash
     $ sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
-    $ sudo chmod g+rwx "/home/$USER/.docker" -R
+    $ sudo chmod g+rwx "$HOME/.docker" -R
     ```
 
 ## Configure Docker to start on boot
@@ -479,10 +479,10 @@ and a 10% overall performance degradation, even if Docker is not running.
     ```
 
     If your GRUB configuration file has incorrect syntax, an error occurs.
-    In this case, repeat steps 3 and 4.
+    In this case, repeat steps 2 and 3.
 
     The changes take effect when the system is rebooted.
 
 ## Next steps
 
-- Continue with the [User Guide](/engine/userguide/index.md).
+- Continue with the [User Guide](/get-started/index.md).
